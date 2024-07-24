@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MyScreen();
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({super.key});
+
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  var a, b, sum;
+  var msg = '';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: "Hello",
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("MyApp"),
+            backgroundColor: Colors.blueAccent,
+          ),
+          body: Column(
+            children: [
+              TextField(onChanged: (value1) {
+                a = int.parse(value1);
+              }),
+              TextField(onChanged: (value2) {
+                b = int.parse(value2);
+              }),
+              ElevatedButton(
+                  onPressed: () {
+                    docheck();
+                  },
+                  child: Text("Addition")),
+              Text("$sum",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 224, 179, 187), fontSize: 40))
+            ],
+          ),
+        ));
+  }
+
+  void docheck() {
+    setState(() {
+      sum = a + b;  
+    });
+  }
+}

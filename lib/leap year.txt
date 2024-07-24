@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MyScreen();
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({super.key});
+
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  var a;
+  var msg = '';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: "Hello",
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("MyApp"),
+            backgroundColor: Colors.blueAccent,
+          ),
+          body: Column(
+            children: [
+              
+              TextField(onChanged: (value) {
+                a = int.parse(value);
+              }),
+              
+              Text(
+                "$a",
+                style: TextStyle(fontSize: 40),
+              ),
+              
+              ElevatedButton(
+                  onPressed: () {
+                    docheck();
+                  },
+                  child: Text("Check")),
+              
+              Text("$msg" , style: TextStyle( color: Color.fromARGB(255, 224, 179, 187), fontSize: 40))
+            ],
+          ),
+        ));
+  }
+
+  void docheck() {
+    if (a % 4 == 0) {
+      setState(() {
+        msg = "Leap Year";
+      });
+    }
+    else {
+      msg = "Not Leap year";
+    }
+  }
+}

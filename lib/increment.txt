@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MyScreen();
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({super.key});
+
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  var a = 0;
+  var msg = '';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: "Hello",
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("MyApp"),
+            backgroundColor: Colors.blueAccent,
+          ),
+          body: Column(
+            children: [
+              Text(
+                "value is $a",
+                style: TextStyle(fontSize: 40),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (a >= 10) {
+                      setState(() {  
+                      msg = "Sorry value is > 10";
+                      });
+                    } else {
+                      setState(() {
+                        msg = "";
+                        a++;
+                      });
+                    }
+                  },
+                  child: const Text("Increment")),
+              ElevatedButton(
+                  onPressed: () {
+                    if (a <= 0) {
+                      setState(() {
+                        msg = "Sorry value is <= 0";
+                      });
+                    } else {
+                      setState(() {
+                        msg = "";
+                        a--;
+                      });
+                    }
+                  },
+                  child: const Text("decrement")),
+              Text("$msg",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 254, 2, 44), fontSize: 40))
+            ],
+          ),
+        ));
+  }
+}
